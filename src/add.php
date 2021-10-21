@@ -108,7 +108,7 @@ include "config.php";
                             <label for="production_date">Ngày sản xuất</label>
                         </div>
                         <div class="col-md-10">
-                            <input type="date" class="form-control" id="production_date" name="production_date">
+                            <input type="text" class="form-control" id="production_date" name="production_date">
                         </div>
                     </div>
 
@@ -117,7 +117,7 @@ include "config.php";
                             <label for="expiration_date">Ngày hết hạn</label>
                         </div>
                         <div class="col-md-10">
-                            <input type="date" class="form-control" id="expiration_date" name="expiration_date">
+                            <input type="text" class="form-control" id="expiration_date" name="expiration_date">
                         </div>
                     </div>
 
@@ -138,11 +138,11 @@ include "config.php";
                             <input type="number" class="form-control" id="quantity" name="quantity">
                         </div>
                     </div>
-                    
+
                     </select>
         </div>
     </div>
-   
+
 
 
     <div class="row">
@@ -173,26 +173,37 @@ include "config.php";
 if (isset($_POST['submit'])) {
 
 
-    $emp_name = $_POST['bdName'];
-    $emp_position = $_POST['bdSex'];
-    $emp_mobile = $_POST['bdAge'];
-    $emp_email = $_POST['bgroup'];
-    $office_id = $_POST['bdSDT'];
+    $name = $_POST['name'];
+    $type = $_POST['type'];
+    $barcode = $_POST['barcode'];
+    $dose = $_POST['dose'];
+    $code = $_POST['code'];
+
+    $cost_price = $_POST['cost_price'];
+    $selling_price = $_POST['selling_price'];
+    $expiry = $_POST['expiry'];
+    $company_name = $_POST['company_name'];
+    $production_date = $_POST['production_date'];
+    $expiration_date = $_POST['expiration_date'];
+    $place = $_POST['place'];
+    $quantity = $_POST['quantity'];
+
 
 
 
     $sql = "INSERT INTO blood_donor (bd_name,bd_sex,bd_age,bd_group,bd_phone)
-        VALUES ('$emp_name','$emp_position','$emp_mobile','$emp_email','$office_id')";
+        VALUES ('$name','$type','$barcode','$dose','$code','$cost_price','$code','$selling_price','$expiry','$company_name','$production_date','$expiration_date','$place','$quantity')";
 
     $_result = mysqli_query($conn, $sql);
 
     if ($_result > 0) {
         $_SESSION['add'] = "<div class='text-success'>Thêm Thành Công</div>";
         header("Location:chitiet.php");
-    } else {
-        $_SESSION['add'] = "<div class='text-danger'>Thêm Thất Bại</div>";
-        header("Location:employees.php");
-    }
+    } 
+    // else {
+    //     $_SESSION['add'] = "<div class='text-danger'>Thêm Thất Bại</div>";
+    //     header("Location:index.php");
+    // }
 }
 mysqli_close($conn);
 ?>
